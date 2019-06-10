@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Paper from '@material-ui/core/Paper';
 import TodoList from '../component/TodoList'
 import TodoText from '../component/TodoText';
-import TodoActions from '../component/TodoActions';
 import '../style/TodoApp.scss';
 
 class TodoApp extends Component {
@@ -32,14 +31,13 @@ class TodoApp extends Component {
 
   completeTodo = (e, index) => {
     const isChecked = e.target.checked
-    console.log(isChecked)
-    // this.setState(prevState => {
-    //   const todos = [...prevState.todolist]
-    //   todos[index].completed = !isChecked
-    //   return {
-    //     todolist: todos
-    //   }
-    // })
+    this.setState(preState => {
+      const todolist = preState.todolist
+      todolist[index].completed = isChecked
+      return {
+        todolist: todolist
+      }
+    })
   }
 
   render() {
@@ -49,7 +47,6 @@ class TodoApp extends Component {
           <h1>To-do List</h1>
           <TodoText addTodo={this.addTodo} />
           <TodoList todolist={this.state.todolist} removeTodo={this.handleRemoveTodo} completeTodo={this.completeTodo} />
-          <TodoActions />
         </Paper>
       </div>
     );
