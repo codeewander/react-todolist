@@ -20,10 +20,7 @@ class TodoText extends Component {
   }
 
   createTodo = () => {
-    if (!this.state.text) {
-      return
-    }
-    this.props.addTodo(this.state.text)
+    this.state.text && this.props.addTodo(this.state.text)
     this.setState({
       text: ''
     })
@@ -34,7 +31,6 @@ class TodoText extends Component {
       <div>
         <TextField
           placeholder="請輸入代辦事項"
-          id="outlined-dense"
           variant="outlined"
           label="Todo"
           margin="dense"

@@ -12,24 +12,24 @@ class TodoApp extends Component {
     }
   }
 
-  addTodo = (text) => {
-    let prevlist = this.state.todolist
+  handleAddTodo = (text) => {
+    let todolist = this.state.todolist
     let id = this.state.todolist.length + 1
-    prevlist.push({ text: text, completed: false, id: id })
+    todolist.push({ text: text, completed: false, id: id })
     this.setState({
-      todolist: prevlist
+      todolist: todolist
     })
   }
 
   handleRemoveTodo = (index) => {
-    let todos = this.state.todolist
-    todos.splice(index, 1);
+    let todolist = this.state.todolist
+    todolist.splice(index, 1);
     this.setState({
-      todolist: todos
+      todolist: todolist
     })
   }
 
-  completeTodo = (e, index) => {
+  handleCompleteTodo = (e, index) => {
     const isChecked = e.target.checked
     this.setState(preState => {
       const todolist = preState.todolist
@@ -45,8 +45,8 @@ class TodoApp extends Component {
       <div className="container">
         <Paper className="content-wrapper">
           <h1>To-do List</h1>
-          <TodoText addTodo={this.addTodo} />
-          <TodoList todolist={this.state.todolist} removeTodo={this.handleRemoveTodo} completeTodo={this.completeTodo} />
+          <TodoText addTodo={this.handleAddTodo} />
+          <TodoList todolist={this.state.todolist} removeTodo={this.handleRemoveTodo} handleCompleteTodo={this.completeTodo} />
         </Paper>
       </div>
     );
